@@ -14,15 +14,12 @@ internal struct RGBColor: Hashable, Equatable {
 	let green: Int64
 	let blue: Int64
 	let alpha: Int64
-	let hashValue: Int
 
 	init(red: Int64, green: Int64, blue: Int64, alpha: Int64) {
 		self.red = red
 		self.green = green
 		self.blue = blue
 		self.alpha = alpha
-        let maxInt = Int64(Int32.max)
-		self.hashValue = Int(((alpha << 24) | (red << 16) | (green << 8) | blue) % maxInt)
 	}
 
 	init(color: UIColor) {
@@ -79,5 +76,5 @@ internal struct RGBColor: Hashable, Equatable {
 }
 
 internal func ==(lhs: RGBColor, rhs: RGBColor) -> Bool {
-	return lhs.hashValue == rhs.hashValue
+	return lhs.red == rhs.red && lhs.green == rhs.green && lhs.blue == rhs.blue && lhs.alpha == rhs.alpha
 }
